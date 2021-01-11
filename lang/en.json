@@ -1,0 +1,10 @@
+{
+  "SETTINGS.name": "Configure VTTA module settings",
+  "SETTINGS.label": "Open Configuration",
+  "SETTINGS.hint": "Global VTTA configuration settings panel",
+  "UI.BUTTON.OK": "OK",
+  "UI.BUTTON.CANCEL": "Cancel",
+  "SETTINGS.sharedSettings.label": "Shared settings across VTTA modules",
+  "SETTING.actorImageDirectory.label": "Target directory for actor-related images",
+  "SETTING.actorImageDirectory.hint": "Select a directory that serves as the root directory for all images related to actors. An automatic subfolder-structure will be generated for you while using the VTTA modules.Note: '[data]' - the root directory of the user data directory is not a valid entry, as Foundry prohibits saving files by modules at the root."
+}

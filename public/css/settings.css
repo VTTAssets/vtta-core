@@ -1,0 +1,103 @@
+/**
+ * Colors
+ */
+/** 
+ * IMPORTS 
+ */
+/** Add the VTTA Logo to the Settings button in the module configuration */
+#config-tabs > div.tab.active > div > div > button[data-key="vtta-core.settings"] > label {
+  background-image: url(../img/vtta-logo-256x256.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-left: 20px;
+}
+
+/** Basic formatting **/
+div.app.vtta.settings section.introduction {
+  background-color: #fdfda8;
+  padding: 5px;
+}
+
+div.app.vtta.settings section.configuration {
+  padding: 1rem;
+}
+
+div.app.vtta.settings section.configuration span.header {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  color: #e9c46a;
+}
+
+div.app.vtta.settings section.configuration div.field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+div.app.vtta.settings section.configuration div.field div.label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+div.app.vtta.settings section.configuration div.field div.label span {
+  display: block;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  padding-right: 1rem;
+  font-weight: bold;
+}
+
+div.app.vtta.settings section.configuration div.field div.label input {
+  height: auto;
+  width: auto;
+  display: block;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+div.app.vtta.settings section.configuration div.field div.label input[type=text],
+div.app.vtta.settings section.configuration div.field div.label input[type=number],
+div.app.vtta.settings section.configuration div.field div.label select {
+  height: 36px;
+}
+
+div.app.vtta.settings section.configuration div.field div.label input[type=checkbox] {
+  max-width: 14px;
+}
+
+div.app.vtta.settings section.configuration div.field div.hint {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: gray;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: thin solid black;
+}
+
+div.app.vtta.settings section.configuration div.field div.hint:last-of-type {
+  border-bottom: none;
+  padding-bottom: auto;
+  margin-bottom: auto;
+}
+
+/** DirectoryPicker **/
+/*# sourceMappingURL=settings.css.map */

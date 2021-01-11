@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.min.css" />
+    <link rel="stylesheet" href="settings.min.css" />
+    <script
+      src="https://kit.fontawesome.com/4fccc46c58.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div
+      id="app-46"
+      class="app window-app vtta ui settings"
+      data-appid="46"
+      style="
+        z-index: 101;
+        width: 600px;
+        height: 400px;
+        left: 178.5px;
+        top: 79px;
+        border-radius: 20px;
+      "
+    >
+      <header class="window-header flexrow draggable">
+        <h4 class="window-title">VTTA Centralized Configuration</h4>
+        <a class="header-button close"><i class="fas fa-times"></i>Close</a>
+      </header>
+
+      <section class="window-content">
+        <form>
+          <div class="ui vtta">
+            <section class="intro"></section>
+            <section class="configuration ui vtta" data-name="vtta-tokens">
+              <span class="header"> VTTA Tokens </span>
+              <div class="field">
+                <div class="label">
+                  <span>
+                    Default border frame image for Non-player characters
+                  </span>
+                  <input
+                    type="text"
+                    name="vtta-tokens.defaultNPCFrame"
+                    data-dtype="ImageFile"
+                    value="[data] frames/npc.png"
+                    readonly=""
+                  />
+
+                  <button
+                    type="button"
+                    class="file-picker"
+                    data-type="imagevideo"
+                    data-target="img"
+                    title="Pick image file"
+                  >
+                    <i class="fas fa-file-import fa-fw"></i>
+                  </button>
+                </div>
+                <div class="hint">
+                  Select an image to be loaded as a default frame
+                </div>
+              </div>
+              <div class="field">
+                <div class="label">
+                  <span>
+                    Default border frame image for Player characters
+                  </span>
+                  <input
+                    type="text"
+                    name="vtta-tokens.defaultPCFrame"
+                    data-dtype="ImageFile"
+                    value="[data] frames/npc.png"
+                    readonly=""
+                  />
+
+                  <button
+                    type="button"
+                    class="file-picker"
+                    data-type="imagevideo"
+                    data-target="img"
+                    title="Pick image file"
+                  >
+                    <i class="fas fa-file-import fa-fw"></i>
+                  </button>
+                </div>
+                <div class="hint">
+                  Select an image to be loaded as a default frame
+                </div>
+              </div>
+              <div class="field">
+                <div class="label">
+                  <span> Generate missing tokens automatically </span>
+                  <input
+                    style="width: auto"
+                    type="checkbox"
+                    name="vtta-tokens.automaticTokenGeneration"
+                    data-dtype="Boolean"
+                    checked=""
+                  />
+                </div>
+                <div class="hint">
+                  Auto-generating a token lacks a token image but has a valid
+                  profile image set (with various definitions of success).
+                </div>
+              </div>
+              <div class="field">
+                <div class="label">
+                  <span> Size of the generated token [100-400] </span>
+                  <input
+                    type="number"
+                    name="vtta-tokens.tokenSize"
+                    data-dtype="Number"
+                    value="280"
+                    min="100"
+                    max="400"
+                  />
+                </div>
+                <div class="hint">
+                  Being quadratic, both width and height are the same value in
+                  pixels
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="buttons">
+            <button type="submit">Save settings</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>

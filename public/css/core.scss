@@ -1,0 +1,222 @@
+/** 
+ * IMPORTS 
+ */
+@use 'colors.scss' as *;
+
+/**
+ * Fonts
+ */
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@700&family=Roboto:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap");
+
+// Font Variables
+$roboto: "Roboto", serif;
+$assistant: "Assistant", sans-serif;
+
+/**
+ * BASIC FORMATTING
+ */
+.vtta {
+  /* 
+   * GENERIC STYLES
+   */
+  font-family: $roboto;
+  font-weight: normal;
+  font-size: 0.8rem;
+  color: $COLOR_FOREGROUND_DEFAULT;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-block-start: auto;
+    margin-block-end: auto;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 900;
+    font-family: $assistant;
+    color: $COLOR_FOREGROUND_ACCENT_1;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    font-family: $assistant;
+    color: $COLOR_FOREGROUND_ACCENT_1;
+  }
+
+  a {
+    color: $COLOR_LINK;
+  }
+  a:hover {
+    color: $COLOR_LINK_HOVER;
+  }
+  a:active {
+    color: $COLOR_LINK_ACTIVE;
+  }
+
+  button {
+    max-width: 20%;
+    background: $COLOR_BACKGROUND_ACCENT_2;
+    border: none;
+    color: $COLOR_FOREGROUND_DEFAULT;
+    box-shadow: $SHADOW_FAINT;
+  }
+
+  button:hover {
+    background-color: $COLOR_BACKGROUND_DEFAULT;
+    color: $COLOR_FOREGROUND_ACCENT_1;
+  }
+
+  button.active {
+    position: relative;
+    top: 1px;
+    box-shadow: $SHADOW_FAINT;
+  }
+
+  input,
+  select {
+    border: none;
+    background-color: $COLOR_FOREGROUND_DEFAULT;
+    color: $COLOR_BACKGROUND_DEFAULT;
+  }
+
+  input[type="range"] {
+    background-color: transparent;
+  }
+
+  input:active,
+  input:focus,
+  select:focus {
+    box-shadow: none;
+    // background-color: $COLOR_FOREGROUND_ACCENT_1;
+  }
+
+  /**
+   * Application generic stylings
+   */
+  header.window-header {
+    color: $COLOR_FOREGROUND_ACCENT_1;
+    background-color: $COLOR_BACKGROUND_ACCENT_3;
+
+    line-height: 1em;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+
+    .header-button {
+      i.fas,
+      i.fa {
+        margin-right: 0.25rem;
+      }
+    }
+  }
+
+  section.window-content {
+    background-image: none;
+    color: $COLOR_FOREGROUND_DEFAULT !important;
+    background-color: $COLOR_BACKGROUND_DEFAULT !important;
+    padding: 0px !important;
+  }
+
+  .small {
+    transform: scale(0.8);
+  }
+
+  /**
+   * Button area 
+   */
+  .buttons {
+    background: $COLOR_BACKGROUND_ACCENT_3;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+
+    button {
+      margin-right: 0.5rem;
+    }
+
+    button:last-of-type {
+      margin-right: 0;
+    }
+
+    .seperator {
+      width: 1px;
+      height: 100%;
+      border-right: 4px solid $COLOR_BACKGROUND_ACCENT_2;
+      margin-right: 0.5rem;
+    }
+  }
+
+  /**
+   * Modal
+   */
+  .modal {
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $COLOR_BACKDROP;
+    z-index: 400;
+
+    .container {
+      background-color: $COLOR_BACKGROUND_DEFAULT;
+      position: absolute;
+      z-index: 400;
+      width: 400px;
+
+      top: 50%;
+      left: 50%;
+      margin: -200px 0 0 -200px;
+      box-shadow: $SHADOW_STRONG;
+
+      border-radius: 3px;
+
+      .title {
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        display: block;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: $COLOR_FOREGROUND_ACCENT_1;
+        background-color: $COLOR_BACKGROUND_ACCENT_3;
+
+        padding: 0.5rem;
+      }
+
+      section.window-content {
+        padding: 0.5rem !important;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        button {
+          margin-right: 0.5rem;
+        }
+
+        button:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

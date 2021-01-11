@@ -1,0 +1,22 @@
+{
+  "name": "vtta-core",
+  "title": "Virtual Tabletop Assets (VTTA)",
+  "description": "Required module for all VTTA modules, providing generic functionality and configuration possiblities",
+  "author": "Sebastian Will <vttassets@gmail.com>",
+  "version": "1.0.1",
+  "minimumCoreVersion": "0.7.6",
+  "compatibleCoreVersion": "0.7.6",
+  "esmodules": ["src/index.mjs"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "styles": [
+    "public/css/core.min.css",
+    "public/css/settings.min.css",
+    "public/css/notifications.min.css"
+  ]
+}

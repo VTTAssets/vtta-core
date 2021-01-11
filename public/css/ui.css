@@ -1,0 +1,148 @@
+/**
+ * GENERIC 
+ */
+
+.vtta.ui,
+.vtta.ui section.window-content {
+  background-image: none;
+  color: rgb(245, 247, 232);
+  background-color: rgb(54, 54, 54);
+}
+
+.vtta.ui header.window-header {
+  color: #f7e270;
+  background-color: #5f5f5f;
+}
+
+.vtta.ui.small {
+  transform: scale(0.8);
+}
+/**
+ * BUTTON
+ */
+
+.vtta.ui .window-content button,
+.vtta.ui button {
+  max-width: 20%;
+
+  background-color: #5f5f5f;
+  border: none;
+  color: #b5b3a4;
+
+  -webkit-box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.vtta.ui .window-content button:hover,
+.vtta.ui button:hover {
+  background-color: #b5b3a4;
+  color: #5f5f5f;
+  -webkit-box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.vtta.ui button:active {
+  position: relative;
+  top: 1px;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+/**
+ * BUTTON BAR
+ */
+
+.vtta.ui .buttons {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.vtta.ui .buttons button {
+  margin-right: 0.5rem;
+}
+.vtta.ui .buttons button:last-of-type {
+  margin-right: 0;
+}
+
+/**
+ * INPUT: Text
+ */
+.vtta.ui input[type="text"],
+.vtta.ui input[type="number"],
+.vtta.ui select {
+  background-color: #999999;
+  border: none;
+  color: #363636;
+}
+
+.vtta.ui input[type="text"]:focus,
+.vtta.ui input[type="number"]:focus {
+  background-color: #999999;
+  box-shadow: none;
+}
+
+/**
+ * MODAL 
+ */
+.vtta.ui.modal {
+  position: fixed;
+  margin: 0px;
+  padding: 0px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0 0 0 / 50%);
+  z-index: 400;
+}
+
+.vtta.ui.modal .container {
+  position: absolute;
+  z-index: 200;
+  width: 400px;
+
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -200px;
+  -webkit-box-shadow: 6px 3px 16px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 3px 16px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 6px 3px 16px 0px rgba(0, 0, 0, 0.75);
+
+  border-radius: 3px;
+  padding-bottom: 0.5rem;
+}
+
+.vtta.ui.modal .container .title {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  display: block;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #f7e270;
+  background-color: #5f5f5f;
+
+  padding: 0.5rem;
+}
+
+.vtta.ui.modal .container .content {
+  padding: 0.5rem;
+}
+
+.vtta.ui.modal .container .buttons {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.vtta.ui.modal .container .buttons button {
+  margin-right: 0.5rem;
+}
+.vtta.ui.modal .container .buttons button:last-of-type {
+  margin-right: 0;
+}
