@@ -42,7 +42,6 @@ const download = (url) => {
       (isVTTAOwned, hostname) => isVTTAOwned || proxy.search(hostname) !== -1,
       false
     );
-    console.log("Proxy is VTTA-owned?", isVTTAOwnedProxy);
 
     if (isVTTAOwnedProxy) {
       try {

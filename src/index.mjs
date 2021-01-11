@@ -14,14 +14,13 @@ Handlebars.registerHelper("json", function (context) {
 
 Hooks.once("init", function () {
   CONFIG.debug.hooks = false;
+  registerAvailabilityQueryHandler();
   registerLogger();
   registerSettings();
   registerUI();
   registerImageTools();
 
   registerGameSettings();
-
-  registerAvailabilityQueryHandler();
 
   stopNagging();
 });

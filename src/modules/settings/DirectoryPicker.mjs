@@ -133,7 +133,7 @@ class DirectoryPicker extends FilePicker {
       const current = matches[2].trim();
       const [activeSource, bucket] = source.split(":");
 
-      const VALID_ACTIVE_SOURCES = ["data", "s3"];
+      const VALID_ACTIVE_SOURCES = ["data", "s3", "forgevtt"];
       if (VALID_ACTIVE_SOURCES.includes(activeSource)) {
         return {
           activeSource: activeSource,
