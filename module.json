@@ -3,7 +3,7 @@
   "title": "Virtual Tabletop Assets (VTTA)",
   "description": "Required module for all VTTA modules, providing generic functionality and configuration possiblities",
   "author": "Sebastian Will <vttassets@gmail.com>",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "minimumCoreVersion": "0.7.6",
   "compatibleCoreVersion": "0.7.6",
   "esmodules": ["src/index.mjs"],
