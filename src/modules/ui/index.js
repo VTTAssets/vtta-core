@@ -1,10 +1,15 @@
-import Download from "./Download.mjs";
+import Modal from "./Modal.js";
+import Notification from "./Notification.js";
+
 /**
  * Construct the global object
  */
 const vtta = {
-  image: {
-    download: Download,
+  ui: {
+    Modal,
+    Notification,
+    BUTTON_OK: "OK",
+    BUTTON_CANCEL: "CANCEL",
   },
 };
 
@@ -17,6 +22,4 @@ export default function () {
   } else {
     window.vtta = vtta;
   }
-  console.log("Image utilities registered:");
-  console.log(window.vtta);
 }

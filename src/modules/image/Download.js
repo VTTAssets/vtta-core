@@ -1,4 +1,4 @@
-import config from "../../config/index.mjs";
+import config from "../../config/index.js";
 
 const getS3Config = () => {
   const s3Endpoint =

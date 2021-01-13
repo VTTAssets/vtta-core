@@ -33,8 +33,6 @@ class Modal {
       const input = $(event.target);
       const name = $(input).attr("name");
       const value = $(input).val();
-
-      console.log("Updating data for " + name + " to " + value);
       this.data[name] = value;
     };
 

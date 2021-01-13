@@ -1,6 +1,6 @@
-import DirectoryPicker from "./DirectoryPicker.mjs";
-import ImageFilePicker from "./ImageFilePicker.mjs";
-
+import DirectoryPicker from "./DirectoryPicker.js";
+import ImageFilePicker from "./ImageFilePicker.js";
+import logger from "../../util/logger.js";
 /**
  * Construct the global object
  */
@@ -18,7 +18,7 @@ export default function () {
   // this s hooked in, we don't use all the data, so lets stop eslint complaining
   // eslint-disable-next-line no-unused-vars
   Hooks.on("renderSettingsApplication", (app, html, user) => {
-    console.log("Processing HTML for Settings UI");
+    logger.debug("Processing HTML for Settings UI");
     ImageFilePicker.processHtml(html);
     DirectoryPicker.processHtml(html);
   });
@@ -28,6 +28,4 @@ export default function () {
   } else {
     window.vtta = vtta;
   }
-  console.log("Settings registered:");
-  console.log(window.vtta);
 }

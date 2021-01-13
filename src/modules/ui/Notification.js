@@ -22,10 +22,12 @@ const notification = {
       $("#vtta-notifications").empty();
     });
   },
-  show: (message, timeout = 4000) => {
+  show: (title, text, timeout = 4000) => {
     $("#vtta-notifications").css("left", $("#players").css("left"));
     // prettier-ignore
     $("#vtta-notifications").css("bottom", $("#players").height() + (2 * MARGIN));
+
+    const message = `<h2>${title}</h2><div>${text}</div>`;
 
     let note = $(`<div class="ui" style="display: none"></div>`).append(
       message

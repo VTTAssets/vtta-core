@@ -1,4 +1,4 @@
-import Setting from "./setting.mjs";
+import Setting from "./setting.js";
 
 class ImagePathSetting extends Setting {
   constructor(moduleName, key, label, hint, validation = null) {

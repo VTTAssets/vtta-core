@@ -1,5 +1,5 @@
-import config from "../config/index.mjs";
-import GameSettings from "../apps/settings.mjs";
+import config from "../config/index.js";
+import GameSettings from "../apps/settings.js";
 
 //const DEFAULT_IMAGE_PROXY = "https://vttassets.eu.ngrok.io/dl/%URL%";
 const DEFAULT_IMAGE_PROXY = "https://i.vtta.io/dl/%URL%";
@@ -16,32 +16,24 @@ export default function () {
     retricted: true,
   });
 
-  /**
-   * Image Download Proxy
-   * If you want to use your own image download CORS proxy, set a config in-game manually:
-   * game.settings.set('vtta-core', 'proxy', 'https://someproxy.ru/get?url=%URL%');
-   *
-   * The downloadable URL will be url encoded and appended to the configured host
-   * at %URL%
-  //  */
-  // game.settings.register(config.module.name, "proxy", {
-  //   type: String,
-  //   retricted: true,
-  //   scope: "world",
-  //   config: false,
-  //   default: DEFAULT_IMAGE_PROXY,
-  // });
-
-  // game.settings.register(config.module.name, "access_token", {
-  //   type: String,
-  //   retricted: true,
-  //   scope: "world",
-  //   config: false,
-  //   default: "anonymous",
-  // });
-
   // public settings
   const settings = [
+    {
+      key: "logLevel",
+      type: Number,
+      public: false,
+      scope: "world",
+      config: false,
+      default: 4,
+    },
+    /**
+     * Image Download Proxy
+     * If you want to use your own image download CORS proxy, set a config in-game manually:
+     * game.settings.set('vtta-core', 'proxy', 'https://someproxy.ru/get?url=%URL%');
+     *
+     * The downloadable URL will be url encoded and appended to the configured host
+     * at %URL%
+     */
     {
       key: "proxy",
       type: String,

@@ -1,4 +1,4 @@
-import DirectoryPicker from "../modules/settings/DirectoryPicker.mjs";
+import logger from "../util/logger.js";
 
 class SettingsApplication extends FormApplication {
   /** @override */
@@ -29,7 +29,7 @@ class SettingsApplication extends FormApplication {
 
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        window.vtta.logger.debug(
+        logger.debug(
           "vtta-core",
           "Done collecting configurations",
           configurations
@@ -52,16 +52,12 @@ class SettingsApplication extends FormApplication {
               });
             return configuration;
           });
-
-        // add the public configuration from vtta-core, too
-        console.log(configurations);
-
         resolve({ configurations: configurations });
       }, QUERY_TIMEOUT);
 
       // register an event listener listening for answers to our request
       window.addEventListener("vtta.configuration.submit", (event) => {
-        window.vtta.logger.debug(
+        logger.debug(
           "Received configuration from " + event.detail.name,
           event.detail
         );
@@ -81,13 +77,14 @@ class SettingsApplication extends FormApplication {
    * @abstract
    */
   async _updateObject(event, formData) {
-    console.log(formData);
     event.preventDefault();
 
     for (const prop in formData) {
       const [moduleName, key] = prop.split(".");
       const value = formData[prop];
-      console.log("Setting: ", moduleName, key, value);
+      logger.debug(
+        `Updating setting for module ${moduleName}: ${key} = ${value}`
+      );
       await game.settings.set(moduleName, key, value);
     }
 

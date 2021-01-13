@@ -49,9 +49,7 @@ const LOG_FUNCTIONS = new Map([
 const log = (module, logLevel, data) => {
   if (filter(module, logLevel)) return;
   const [head, ...rest] = data;
-  const groupTitle = `[${LOG_PREFIX.get(logLevel)}] ${module}: ${head}`;
   const coloredTitle = `%c[${LOG_PREFIX.get(logLevel)}] ${module}: %c${head}`;
-  //console.groupCollapsed(groupTitle);
   LOG_FUNCTIONS.get(logLevel)(
     coloredTitle,
     LOG_FORMATS.get(logLevel),
@@ -60,7 +58,6 @@ const log = (module, logLevel, data) => {
   if (rest.length > 0) {
     LOG_FUNCTIONS.get(logLevel)(...rest);
   }
-  //console.groupEnd();
 };
 
 /**
