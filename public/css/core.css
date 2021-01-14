@@ -158,7 +158,7 @@
   border-right: 4px solid #227e73;
   margin-right: 0.5rem;
 }
-.vtta .modal {
+.vtta .vtta-modal {
   position: fixed;
   margin: 0px;
   padding: 0px;
@@ -169,7 +169,7 @@
   background-color: #0c2925cb;
   z-index: 400;
 }
-.vtta .modal .container {
+.vtta .vtta-modal .container {
   background-color: #0d332f;
   position: absolute;
   z-index: 400;
@@ -181,7 +181,7 @@
           box-shadow: 6px 6px 16px 0px rgba(0, 0, 0, 0.75);
   border-radius: 3px;
 }
-.vtta .modal .container .title {
+.vtta .vtta-modal .container .title {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   display: block;
@@ -191,10 +191,10 @@
   background-color: #1a5e56;
   padding: 0.5rem;
 }
-.vtta .modal .container section.window-content {
+.vtta .vtta-modal .container section.window-content {
   padding: 0.5rem !important;
 }
-.vtta .modal .container .buttons {
+.vtta .vtta-modal .container .buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -206,10 +206,10 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-.vtta .modal .container .buttons button {
+.vtta .vtta-modal .container .buttons button {
   margin-right: 0.5rem;
 }
-.vtta .modal .container .buttons button:last-of-type {
+.vtta .vtta-modal .container .buttons button:last-of-type {
   margin-right: 0;
 }
 /*# sourceMappingURL=core.css.map */

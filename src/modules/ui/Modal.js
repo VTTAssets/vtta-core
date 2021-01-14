@@ -1,7 +1,7 @@
 class Modal {
   constructor(id, title, content, buttons) {
     this.html = $(
-      `<div class="vtta"><div class="modal" id="${id}">
+      `<div class="vtta"><div class="vtta-modal" id="${id}">
         <div class="container">
           <header class="window-header"></header>
           <section class="window-content"></section>
