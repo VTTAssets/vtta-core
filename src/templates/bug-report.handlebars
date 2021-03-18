@@ -1,0 +1,135 @@
+<form autocomplete="off" >
+   <div class="ui vtta">
+      {{#if user.hasConnectedDiscord }}
+      <section class="intro">
+         <span class="header">
+         Thank you!
+         </span>
+         <div class="hint">
+            <p>Thank you for taking the time to report a bug! It will be posted for review on the Discord server, a link directing to it will be displayed 
+               in the notification area.
+            </p>
+         </div>
+      </section>
+      <section data-name="report">
+         <span class="header">
+         What is going wrong?
+         </span>
+         <div id="updateAvailableWarning" style="display: block" class="hint">
+            <p>For the troubling module is an update available. Please install the latest version to find out if that solves your issue already. If not, please come back here and report your issue. Thank you!</p>
+         </div>
+         <div class="field">
+            <div class="label">
+               <span>
+               Affected Module
+               </span>
+               <select name="module">
+                  {{#each modules}}
+                  <option data-updateAvailable="{{#if this.updateAvailable}}yes{{else}}no{{/if}}" data-version="{{this.version}}" name="{{this.name}}">{{this.label}}</option>
+                  {{/each}}
+               </select>
+            </div>
+            <div class="hint">
+               Please select the module that is causing your issue.
+            </div>
+         </div>
+         <div class="field">
+            <div class="label">
+               <span>
+               Title
+               </span>
+               <input type="text" name="title" placeholder="Example: Importing a Goblin fails due to Nimble Escape"></input>
+            </div>
+            <div class="hint">
+               A short title for your report
+            </div>
+         </div>
+         <div class="field">
+            <div class="label">
+               <span>
+               How do you run Foundry VTT?
+               </span>
+               <select name="hosting">
+                  <option value="unknown">I don't want to disclose that</option>
+                  <option value="Self-hosted">I am running Foundry VTT myself</option>
+                  <optgroup label="I am hosted by ...">
+                     <option value="Foundry Server">Foundry Server</option>
+                     <option value="Molten Hosting">Molten Hosting</option>
+                     <option value="The Forge">The Forge</option>
+                     <option value="Worldmill">Worldmill</option>
+                     <option value="Other">Other</option>
+                  </optgroup>
+               </select>
+            </div>
+            <div class="hint">
+               Answering this question can help narrow down issues. Especially The Forge with it's vastly adapted Foundry environment is a good candidate for needing special treatment.
+            </div>
+         </div>
+         <div class="field">
+            <div class="label">
+               <span>
+               Describe your bug
+               </span>
+            </div>
+            <div class="hint">
+               Please be as thorough as possible (2000 character limit). You can use <a href="https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline-">Discord Markdown</a> to format your bug nicely.
+            </div>
+         </div>
+         <div>
+            <textarea maxlength="2000" name="text" rows="13" placeholder="Example: I am trying to import that green bastard, but it just fails!
+            
+**Steps to reproduce:**
+- Go to `monsters/goblin`, hit Import
+- Check game
+- Much disappoint!"></textarea>
+         </div>
+      </section>
+      <section data-name="info">
+         <span class="header">
+         That Legal Stuff
+         </span>
+         <div>
+            <p>This form is submitted to VTTA.io, where it will get processed and forwarded to platforms open to the public: The VTTA.io Discord server and possibly 
+               Github to track it in an issue list. The data you submit will be displayed along with your Discord user alias that you chose when joining the VTTA.io Discord server.</p>
+            <p>By submitting this form, you are fine with that.</p>
+         </div>
+      </section>
+      <div class="buttons">
+         <button type="reset">Cancel</button>
+         <button type="submit">Send Report</button>
+      </div>
+      {{else}} 
+      <section class="intro">
+         <span class="header">
+         Thank you!
+         </span>
+         <div class="hint">
+            <p><strong>Thank you for taking the time to report a bug.</strong></p>
+            <p>It seems that you have not linked your Discord account to your user account on <a href="https://www.vtta.io">VTTA.io</a> yet, though. 
+               Most bug reports are rarely self-explanationary in itself, so further questions might arise, and Discord is a great tool to get back to you. Additionally, the hard requirement for a 
+               linked Discord account can be a good anti-spam measure by itself, too (or at least I can ban accounts mis-using this bug report tool ;)).
+         </div>
+      </section>
+      <section>
+         <h2>"I do not have Discord, nor an account"</h2>
+         <p>In order to streamline the reports and to be able to qualify and forward it to the corresponding bug trackers, this is the only way to report bugs.</p>
+         <h2>"Okay, then what is "Discord"?"</h2>
+         <p>It is both a chat and a voice-chat client. You can join Discord servers, which are forming around a vast selection of communities. There is an official Foundry VTT Discord server, too, and it's populated with the nicest chap you will find when you want to talk about Foundry VTT and online Dungeons &amp; Dragons. No harm trying it out!</p>
+         <h2>"Does it cost anything?"</h2>
+         <p><a href="https://discord.com/">Discord</a> privides free clients for various operating systems.</p>
+         <h2>"What do I have to do now?"</h2>
+         <ul>
+            <li><strong>Download and install the Discord client</strong> for your operating system</li>
+            <li>During installation, you will be asked to <strong>create a Discord account</strong> using any email you are comfortable with</li>
+            <li>Go to <a href="https://www.vtta.io">VTTA.io</a> and login. Then go to your <a href="https://www.vtta.io/user/profile">User Profile</a></li>
+            <li>Down at the bottom you will find the option to <strong>link your Discord</strong> account to your VTTA.io account.</li>
+            <li>Close this bug report window and open it up again - should work (if not: Open a bug report... oh well, wait a minute...)</li>
+         </ul>
+   </div>
+   </section>
+   <div class="buttons">
+      <button type="reset">Cancel</button>
+   </div>
+   {{/if}}
+   </div>    
+</form>

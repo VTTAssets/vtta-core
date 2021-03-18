@@ -61,7 +61,7 @@ $assistant: "Assistant", sans-serif;
   }
 
   button {
-    max-width: 20%;
+    max-width: 30%;
     background: $COLOR_BACKGROUND_ACCENT_2;
     border: none;
     color: $COLOR_FOREGROUND_DEFAULT;
@@ -72,6 +72,10 @@ $assistant: "Assistant", sans-serif;
     background-color: $COLOR_BACKGROUND_DEFAULT;
     color: $COLOR_FOREGROUND_ACCENT_1;
   }
+  button:disabled, button:hover:disabled {
+    background-color: #10443e;
+    color: #737372;
+  }
 
   button.active {
     position: relative;
@@ -80,10 +84,20 @@ $assistant: "Assistant", sans-serif;
   }
 
   input,
-  select {
+  select,
+  textarea {
     border: none;
     background-color: $COLOR_FOREGROUND_DEFAULT;
     color: $COLOR_BACKGROUND_DEFAULT;
+  }
+
+  input:read-only {
+    background-color: $COLOR_BACKGROUND_ACCENT_1;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(131, 131, 131);
+    opacity: 1; /* Firefox */
   }
 
   input[type="range"] {
@@ -92,7 +106,8 @@ $assistant: "Assistant", sans-serif;
 
   input:active,
   input:focus,
-  select:focus {
+  select:focus,
+  textarea:focus {
     box-shadow: none;
     // background-color: $COLOR_FOREGROUND_ACCENT_1;
   }
@@ -220,3 +235,80 @@ $assistant: "Assistant", sans-serif;
     }
   }
 }
+
+/** Basic formatting **/
+div.app.vtta {
+
+  section.introduction {
+    background-color: rgb(253, 253, 168);
+    padding: 5px;
+  }
+
+  section {
+    padding: 1rem;
+    
+    span.header {
+      font-size: 1rem;
+      font-weight: bold;
+      display: block;
+      color: $COLOR_FOREGROUND_ACCENT_1;
+    }
+  
+    .hint {
+      color: $COLOR_FOREGROUND_ACCENT_2;
+    }
+  
+    .field {
+      display: flex;
+      flex-direction: column;
+  
+      .hint {
+        font-size: 0.9rem;
+        font-style: italic;
+        color: gray;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-bottom: thin solid black;
+      }
+  
+      .hint:last-of-type {
+        border-bottom: none;
+        padding-bottom: auto;
+        margin-bottom: auto;
+      }
+  
+      .label {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+  
+        span {
+          display: block;
+          flex-shrink: 1;
+          flex-grow: 0;
+          flex-basis: 50%;
+          padding-right: 1rem;
+        
+          font-weight: bold;
+        }
+  
+        input,select {
+          height: auto;
+          width: auto;
+          display: block;
+          flex-grow: 1;
+        }
+  
+        input[type="text"], input[type="number"], select {
+          height: 28px;
+        }
+        input[type="checkbox"] {
+          max-width: 14px;
+        }
+      }
+    }
+  }
+}
+
+
+

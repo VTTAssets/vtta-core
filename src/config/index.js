@@ -8,6 +8,9 @@ const config = {
       query: "vtta-core.query",
       response: "vtta-core.available",
     },
+    extension: {
+      default: "CMD_SEND_FOUNDRY_MESSAGE",
+    },
   },
 };
 

@@ -1,10 +1,12 @@
 import Download from "./Download.js";
+import Upload from "./Upload.js";
 /**
  * Construct the global object
  */
 const vtta = {
   image: {
     download: Download,
+    upload: Upload,
   },
 };
 

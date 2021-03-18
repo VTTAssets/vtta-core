@@ -1,10 +1,20 @@
 {
-  "SETTINGS.name": "Configure VTTA module settings",
-  "SETTINGS.label": "Open Configuration",
-  "SETTINGS.hint": "Global VTTA configuration settings panel",
+  "SETTINGS.vtta-core.name": "Configure VTTA module settings",
+  "SETTINGS.vtta-core.label": "Open Configuration",
+  "SETTINGS.vtta-core.hint": "Global VTTA configuration settings panel",
+  "BUGREPORT.vtta-core.name": "Anything not working as expected?",
+  "BUGREPORT.vtta-core.label": "Open Bug Reporter",
+  "BUGREPORT.vtta-core.hint": "(Patreon-only feature) \"Only a dead bug is a good bug\".",
+
   "UI.BUTTON.OK": "OK",
   "UI.BUTTON.CANCEL": "Cancel",
   "SETTINGS.sharedSettings.label": "Shared settings across VTTA modules",
   "SETTING.actorImageDirectory.label": "Target directory for actor-related images",
-  "SETTING.actorImageDirectory.hint": "Select a directory that serves as the root directory for all images related to actors. An automatic subfolder-structure will be generated for you while using the VTTA modules.Note: '[data]' - the root directory of the user data directory is not a valid entry, as Foundry prohibits saving files by modules at the root."
+  "SETTING.actorImageDirectory.hint": "Select a directory that serves as the root directory for all images related to **actors**. An automatic subfolder-structure will be generated for you based on various actor attributes will be created for you.",
+  "SETTING.SECTION.default.label": "General Settings",
+  "SETTING.SECTION.default.description": "Various settings related to the VTTA modules",
+  "SETTING.SECTION.image.label": "Image Settings",
+  "SETTING.SECTION.image.description": "Settings related to storing images on your Foundry server. **Please note:** `[data]` - the root directory of the user data directory is not a valid entry, as Foundry prohibits saving files by modules at the root.",
+  "SETTING.SECTION.token.label": "Token Settings",
+  "SETTING.SECTION.token.description": "Settings related to token generation by vtta-tokens"
 }

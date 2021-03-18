@@ -1,8 +1,8 @@
 import config from "../config/index.js";
-import GameSettings from "../apps/settings.js";
+import GameSettings from "../apps/settings/index.js";
 
-//const DEFAULT_IMAGE_PROXY = "https://vttassets.eu.ngrok.io/dl/%URL%";
 const DEFAULT_IMAGE_PROXY = "https://i.vtta.io/dl/%URL%";
+const DEFAULT_API = "https://api.vtta.io";
 
 export default function () {
   /**
@@ -10,10 +10,10 @@ export default function () {
    */
   game.settings.registerMenu(config.module.name, "settings", {
     type: GameSettings,
-    name: "SETTINGS.name",
-    label: "SETTINGS.label",
-    hint: "SETTINGS.hint",
-    retricted: true,
+    name: "SETTINGS.vtta-core.name",
+    label: "SETTINGS.vtta-core.label",
+    hint: "SETTINGS.vtta-core.hint",
+    restricted: true,
   });
 
   // public settings
@@ -43,6 +43,14 @@ export default function () {
       default: DEFAULT_IMAGE_PROXY,
     },
     {
+      key: "api",
+      type: String,
+      public: false,
+      scope: "world",
+      config: false,
+      default: DEFAULT_API,
+    },
+    {
       key: "access_token",
       type: String,
       public: false,
@@ -57,6 +65,7 @@ export default function () {
       scope: "world",
       config: false,
       public: true,
+      section: "image",
     },
   ];
 

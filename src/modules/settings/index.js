@@ -14,9 +14,7 @@ const vtta = {
 /**
  * Assign the global object or expand it at least
  */
-export default function () {
-  // this s hooked in, we don't use all the data, so lets stop eslint complaining
-  // eslint-disable-next-line no-unused-vars
+export default () => {
   Hooks.on("renderSettingsApplication", (app, html, user) => {
     logger.debug("Processing HTML for Settings UI");
     ImageFilePicker.processHtml(html);
@@ -28,4 +26,4 @@ export default function () {
   } else {
     window.vtta = vtta;
   }
-}
+};

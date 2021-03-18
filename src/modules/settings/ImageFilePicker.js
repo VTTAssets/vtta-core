@@ -34,13 +34,16 @@ class ImageFilePicker extends FilePicker {
 
   static getUrl(filePath) {
     const options = ImageFilePicker.parse(filePath);
-    if (options.activeSource === "s3") {
-      const { protocol, hostname } = game.data.files.s3.endpoint;
-      return `${protocol}//${options.bucket}.${hostname}/${options.current}`;
-    } else {
-      const { remote } = game.data.addresses;
-      return `/${options.current}`;
-      return `${remote}/${options.current}`;
+    switch (options.activeSource) {
+      case "s3":
+        const { protocol, hostname } = game.data.files.s3.endpoint;
+        return `${protocol}//${options.bucket}.${hostname}/${options.current}`;
+      case "forgevtt":
+        return options.current;
+      default:
+        const { remote } = game.data.addresses;
+        return `/${options.current}`;
+        return `${remote}/${options.current}`;
     }
   }
 

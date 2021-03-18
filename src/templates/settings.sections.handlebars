@@ -1,15 +1,20 @@
 <form>
   <div class="ui vtta">
     <section class="intro">
+      Use this centralized configuration panel to adjust settings used by the VTTA.io modules
+      
     </section>
     <div class="configurations">
-    {{#each configurations as |configuration key|}}
-      <section class="configuration" data-name="{{configuration.name}}">
+    {{#each sections as |section key|}}
+      <section class="configuration" data-name="{{section.name}}">
         <span class="header">
-          {{configuration.label}}
+          {{section.label}}
         </span>
-        {{#each configuration.settings as |setting key|}}
-           <div class="field">
+        <div class="hint">
+          {{{markdown section.description}}}
+        </div>
+        {{#each section.settings as |setting key|}}
+          <div class="field">
           <div class="label">
             <span>
               {{setting.label}} {{#if setting.isNumber}}
@@ -20,12 +25,12 @@
             <input
               style="width: auto"
               type="checkbox"
-              name="{{configuration.name}}.{{setting.key}}"
+              name="{{setting.usedBy}}.{{setting.key}}"
               data-dtype="{{setting.type.name}}"
               {{checked setting.value}}
             />
           {{else if setting.isSelect}}
-            <select name="{{configuration.name}}.{{setting.key}}">
+            <select name="{{setting.usedBy}}.{{setting.key}}">
               {{#select this.value}}
                 {{#each this.choices as |name k|}}
                   <option value="{{k}}">
@@ -37,7 +42,7 @@
             {{else if setting.isNumber}}
             <input
               type="number"
-              name="{{configuration.name}}.{{setting.key}}"
+              name="{{setting.usedBy}}.{{setting.key}}"
               data-dtype="{{setting.type.name}}"
               value="{{setting.value}}"
               min="{{setting.min}}"
@@ -47,7 +52,7 @@
           {{else if setting.isRange}}
             <input
               type="range"
-              name="{{configuration.name}}.{{setting.key}}"
+              name="{{setting.usedBy}}.{{setting.key}}"
               data-dtype="Number"
               value="{{setting.value}}"
               min="{{setting.min}}"
@@ -60,7 +65,7 @@
           {{else}}
             <input
             type="text"
-            name="{{configuration.name}}.{{setting.key}}"
+            name="{{setting.usedBy}}.{{setting.key}}"
             data-dtype="{{setting.type.name}}"
             value="{{setting.value}}"
           />
@@ -69,18 +74,25 @@
             
           </div>
           <div class="hint">
-              {{setting.hint}}
+              {{{markdown setting.hint}}}
           </div>
           </div>
         {{/each}}
-      </div>
       </section>
     {{/each}}
-  </div>
-  
+    </div>
+   </div>
   <div class="buttons">
+    {{!-- <button type="button" data-key="report-bug" style="margin-right: auto; background-color: #a80000; color: white;">
+      <i class="fas fa-bug"></i> Report a bug
+    </button> --}}
+
+    {{#each buttons}}
+    <button type="button" data-key="{{this.key}}">{{this.label}}</button>
+      {{/each}}
+
     <button type="submit">
       Save settings
     </button>
-  </div>
+ </div>
 </form>

@@ -1,5 +1,9 @@
 import Modal from "./Modal.js";
-import Notification from "./Notification.js";
+import {
+  notification as Notification,
+  hint as Hint,
+  progress as ProgressBar,
+} from "./Notification.js";
 
 /**
  * Construct the global object
@@ -8,6 +12,8 @@ const vtta = {
   ui: {
     Modal,
     Notification,
+    Hint,
+    ProgressBar,
     BUTTON_OK: "OK",
     BUTTON_CANCEL: "CANCEL",
   },

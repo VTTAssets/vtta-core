@@ -10,92 +10,22 @@
   > div
   > button[data-key="vtta-core.settings"]
   > label {
-  background-image: url(../img/vtta-logo-256x256.png);
+  background-image: url(../img/vtta.io-s-128x128.png);
   background-size: contain;
   background-repeat: no-repeat;
   padding-left: 20px;
 }
 
-/** Basic formatting **/
-div.app.vtta.settings section.introduction {
-  background-color: rgb(253, 253, 168);
-  padding: 5px;
+#config-tabs
+  > div.tab.active
+  > div
+  > div
+  > button[data-key="vtta-core.bug-report"] {
+    background-color: #9a0000;
+    color: white;
 }
 
-div.app.vtta.settings section.configuration {
-  padding: 1rem;
+div.app.vtta.settings div.buttons {
+  position: absolute;
+  top: 800px;
 }
-
-div.app.vtta.settings section.configuration span.header {
-  font-size: 1rem;
-  font-weight: bold;
-  display: block;
-  color: $COLOR_FOREGROUND_ACCENT_1;
-}
-
-div.app.vtta.settings section.configuration div.field {
-  display: flex;
-  flex-direction: column;
-}
-
-div.app.vtta.settings section.configuration div.field div.label {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-div.app.vtta.settings section.configuration div.field div.label span {
-  display: block;
-  flex-shrink: 1;
-  flex-grow: 0;
-  flex-basis: 50%;
-  padding-right: 1rem;
-
-  font-weight: bold;
-}
-
-div.app.vtta.settings section.configuration div.field div.label input {
-  height: auto;
-  width: auto;
-  display: block;
-  flex-grow: 1;
-}
-
-div.app.vtta.settings
-  section.configuration
-  div.field
-  div.label
-  input[type="text"],
-div.app.vtta.settings
-  section.configuration
-  div.field
-  div.label
-  input[type="number"],
-div.app.vtta.settings section.configuration div.field div.label select {
-  height: 36px;
-}
-
-div.app.vtta.settings
-  section.configuration
-  div.field
-  div.label
-  input[type="checkbox"] {
-  max-width: 14px;
-}
-
-div.app.vtta.settings section.configuration div.field div.hint {
-  font-size: 0.9rem;
-  font-style: italic;
-  color: gray;
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-bottom: thin solid black;
-}
-
-div.app.vtta.settings section.configuration div.field div.hint:last-of-type {
-  border-bottom: none;
-  padding-bottom: auto;
-  margin-bottom: auto;
-}
-
-/** DirectoryPicker **/
