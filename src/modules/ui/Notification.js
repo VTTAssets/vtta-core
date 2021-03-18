@@ -144,7 +144,7 @@ const hint = {
           });
         }
       } else {
-        $("div.buttons").css("display", "none");
+        $(note).find("div.buttons").css("display", "none");
       }
       if (options.hide) {
         const hideFn = () => {
