@@ -65,6 +65,27 @@ const hint = {
   },
   show: (message, options = {}) => {
     return new Promise((resolve) => {
+      const finishRender = (note) => {
+        return new Promise((resolve, reject) => {
+          const imgLoaders = [];
+          $(note)
+            .find("img")
+            .each((_, img) => {
+              imgLoaders.push(
+                new Promise((done) => {
+                  img.onload = () => {
+                    done(true);
+                  };
+                })
+              );
+            });
+          if (imgLoaders.length) {
+            Promise.all(imgLoaders).then(() => resolve(note));
+          }
+          resolve(note);
+        });
+      };
+
       $("#vtta-hints").css("width", options.width ? options.width : 300);
 
       // construct the note
@@ -75,115 +96,106 @@ const hint = {
       $("#vtta-hints").append(note);
       $(note).fadeIn(200);
 
-      if (!options.align) options.align = options.element ? "RIGHT" : "CENTER";
+      finishRender(note).then((note) => {
+        if (!options.align)
+          options.align = options.element ? "RIGHT" : "CENTER";
 
-      let anchor = {
-        width: 0,
-        height: 0,
-        top: Math.round(window.innerHeight / 2),
-        left: Math.round(window.innerWidth / 2),
-      };
-
-      if (options.element) {
-        anchor = Object.assign(
-          {
-            width: $(options.element).width(),
-            height: $(options.element).height(),
-          },
-          $(options.element).offset()
-        );
-      }
-
-      const noteInfo = Object.assign(
-        { width: $("#vtta-hints").width(), height: $("#vtta-hints").height() },
-        $("#vtta-hints").position()
-      );
-
-      switch (options.align) {
-        case "RIGHT":
-          $("#vtta-hints").css("top", anchor.top);
-          $("#vtta-hints").css("left", anchor.left + anchor.width + MARGIN);
-          break;
-        case "LEFT":
-          $("#vtta-hints").css("top", anchor.top);
-          $("#vtta-hints").css("left", anchor.left - noteInfo.width - MARGIN);
-          break;
-        case "TOP":
-          $("#vtta-hints").css("top", anchor.top - noteInfo.height - MARGIN);
-          $("#vtta-hints").css("left", anchor.left);
-          break;
-        case "BOTTOM":
-          $("#vtta-hints").css("top", anchor.top + anchor.height + MARGIN);
-          $("#vtta-hints").css("left", anchor.left);
-          break;
-
-        default:
-          // eslint-disable-next-line no-mixed-operators
-          $("#vtta-hints").css(
-            "top",
-            anchor.top - Math.round(noteInfo.height / 2)
-          );
-          // eslint-disable-next-line no-mixed-operators
-          $("#vtta-hints").css(
-            "left",
-            anchor.left - Math.round(noteInfo.width / 2)
-          );
-      }
-
-      if (options.buttons) {
-        for (let name of options.buttons) {
-          let btn = $("<button>" + name + "</button>");
-          $("div.buttons", note).append(btn);
-          $(btn).on("click", () => {
-            $(note).remove();
-            resolve(name);
-            // $(note).fadeOut(100, () => {
-            //   $(note).remove();
-            //   resolve(name);
-            // });
-          });
-        }
-      } else {
-        $(note).find("div.buttons").css("display", "none");
-      }
-      if (options.hide) {
-        const hideFn = () => {
-          $(options.hide.selector).on(options.hide.event, hideFn);
-          $(note).remove();
-          resolve(true);
-          // $(note).fadeOut(100, () => {
-          //   $(note).remove();
-          //   resolve(true);
-          // });
+        let anchor = {
+          width: 0,
+          height: 0,
+          top: Math.round(window.innerHeight / 2),
+          left: Math.round(window.innerWidth / 2),
         };
-        $(options.hide.selector).on(options.hide.event, hideFn);
-      }
+
+        if (options.element) {
+          anchor = Object.assign(
+            {
+              width: $(options.element).width(),
+              height: $(options.element).height(),
+            },
+            $(options.element).offset()
+          );
+        }
+
+        const noteInfo = Object.assign(
+          {
+            width: $("#vtta-hints").width(),
+            height: $("#vtta-hints").height(),
+          },
+          $("#vtta-hints").position()
+        );
+
+        switch (options.align) {
+          case "RIGHT":
+            $("#vtta-hints").css("top", anchor.top);
+            $("#vtta-hints").css("left", anchor.left + anchor.width + MARGIN);
+            break;
+          case "LEFT":
+            $("#vtta-hints").css("top", anchor.top);
+            $("#vtta-hints").css("left", anchor.left - noteInfo.width - MARGIN);
+            break;
+          case "TOP":
+            $("#vtta-hints").css("top", anchor.top - noteInfo.height - MARGIN);
+            $("#vtta-hints").css("left", anchor.left);
+            break;
+          case "BOTTOM":
+            $("#vtta-hints").css("top", anchor.top + anchor.height + MARGIN);
+            $("#vtta-hints").css("left", anchor.left);
+            break;
+
+          default:
+            // eslint-disable-next-line no-mixed-operators
+            $("#vtta-hints").css(
+              "top",
+              anchor.top - Math.round(noteInfo.height / 2)
+            );
+            // eslint-disable-next-line no-mixed-operators
+            $("#vtta-hints").css(
+              "left",
+              anchor.left - Math.round(noteInfo.width / 2)
+            );
+        }
+
+        if (options.buttons) {
+          for (let name of options.buttons) {
+            let btn = $("<button>" + name + "</button>");
+            $("div.buttons", note).append(btn);
+            $(btn).on("click", () => {
+              $(note).remove();
+              resolve(name);
+              // $(note).fadeOut(100, () => {
+              //   $(note).remove();
+              //   resolve(name);
+              // });
+            });
+          }
+        } else {
+          $(note).find("div.buttons").css("display", "none");
+        }
+        if (options.hide) {
+          if (options.hide.selector && options.hide.event) {
+            const hideFn = () => {
+              $(options.hide.selector).on(options.hide.event, hideFn);
+              $(note).remove();
+              resolve(true);
+              // $(note).fadeOut(100, () => {
+              //   $(note).remove();
+              //   resolve(true);
+              // });
+            };
+            $(options.hide.selector).on(options.hide.event, hideFn);
+          } else {
+            // Custom hide function
+            options.hide().then(() => {
+              $(note).remove();
+              resolve(true);
+            });
+          }
+        }
+      });
     });
   },
 };
-
-// const createCounter = (
-//     title: string,
-//     target: number,
-//     count?: number
-//   ): string => {
-//     const id = uuid();
-//     const element = $(
-//       `<div id="count-${id}" data-target="${target}" data-count=${
-//         count ? count : 0
-//       }" class="timer">
-//         <div class="header">${title}</div>
-//         <div class="bar">
-//             <div class="tick" style="width: 0%"></div>
-//         </div>
-//     </div>
-//   </div>`
-//     );
-//     $("body").find("div.vtta.statusBar div.messages").append(element);
-
-//     let percent = count ? Math.round((100 / target) * count) : 0;
-//     $(element).find(".tick").css("width", `${percent}%`);
-//     return id;
 
 const progress = {
   clear: () => {
