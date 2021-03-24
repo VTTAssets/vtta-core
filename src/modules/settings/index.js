@@ -15,7 +15,8 @@ const vtta = {
  * Assign the global object or expand it at least
  */
 export default () => {
-  Hooks.on("renderSettingsConfig", (app, html, user) => {
+  logger.info("Processing HTML for Settings UI");
+  Hooks.on("renderSettingsApplication", (app, html, user) => {
     logger.info("Processing HTML for Settings UI");
     ImageFilePicker.processHtml(html);
     DirectoryPicker.processHtml(html);
