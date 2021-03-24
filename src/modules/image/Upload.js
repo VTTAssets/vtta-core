@@ -2,21 +2,21 @@ import DirectoryPicker from "../settings/DirectoryPicker.js";
 import logger from "../../util/logger.js";
 
 const upload = async (targetPath, filename, data, overwriteExisting = true) => {
-  if (overwriteExisting === false) {
-    const url = DirectoryPicker.URLFromDescriptor(targetPath + "/" + filename);
-    let fileExists = false;
-    try {
-      fileExists = await srcExists(url);
-    } catch (error) {
-      fileExists = false;
-    }
-    if (fileExists) {
-      return {
-        status: "success",
-        path: url,
-      };
-    }
-  }
+  // if (overwriteExisting === false) {
+  //   const url = DirectoryPicker.URLFromDescriptor(targetPath + "/" + filename);
+  //   let fileExists = false;
+  //   try {
+  //     fileExists = await srcExists(url);
+  //   } catch (error) {
+  //     fileExists = false;
+  //   }
+  //   if (fileExists) {
+  //     return {
+  //       status: "success",
+  //       path: url,
+  //     };
+  //   }
+  // }
 
   // inspect the target path
   const details = DirectoryPicker.parse(targetPath);

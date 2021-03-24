@@ -185,13 +185,23 @@ class DirectoryPicker extends FilePicker {
    * @returns
    */
   static isS3URL(url) {
+    const filename = url.split("/").pop();
+    const [source, current] = new FilePicker()._inferCurrentDirectory(url);
+    if (["s3", "forgetvtt", "forge-bazar"].includes(source)) {
+      return {
+        activeSource: source,
+        bucket: null,
+        current: current,
+      };
+    }
+    return false;
     if (DirectoryPicker.isForgeHosted) {
       const tUrl = new URL(url);
       if (tUrl.host.toLowerCase() === "assets.forge-vtt.com") {
         return {
           activeSource: "forgevtt",
           bucket: null,
-          current: tUrl.pathname.substring(1),
+          cdocsurrent: tUrl.pathname.substring(1),
         };
       } else {
         return false;
@@ -277,6 +287,32 @@ class DirectoryPicker extends FilePicker {
   }
 
   static optionsFromURL(url) {
+    if (DirectoryPicker.isExternalURL(url)) {
+      return {
+        activeSource: null,
+        bucket: null,
+        current: url,
+      };
+    } else {
+      const filename = url.split("/").pop();
+      const fp = new FilePicker();
+      const [activeSource, current] = fp._inferCurrentDirectory(url);
+      if (activeSource === "s3") {
+        // try to find the bucket
+        return {
+          activeSource,
+          bucket: fp.bucket,
+          current: `${current}/${filename}`,
+        };
+      }
+
+      return {
+        activeSource,
+        bucket: null,
+        current: `${current}/${filename}`,
+      };
+    }
+
     // local URL
     if (DirectoryPicker.isServerURL(url)) {
       return {
@@ -320,37 +356,37 @@ class DirectoryPicker extends FilePicker {
     };
   }
 
-  static URLFromOptions(options) {
-    // always prepend the current part with a leading slash
-    const current =
-      options.current.indexOf("/") === 0
-        ? options.current
-        : "/" + options.current;
+  //   static URLFromOptions(options) {
+  //     // always prepend the current part with a leading slash
+  //     const current =
+  //       options.current.indexOf("/") === 0
+  //         ? options.current
+  //         : "/" + options.current;
 
-    switch (options.activeSource) {
-      case "s3":
-        const config =
-          game.data.files && game.data.files.s3 && game.data.files.s3
-            ? game.data.files.s3
-            : null;
-        // failsave
-        if (config === null) return current;
-        if (options.bucket) {
-          return `${config.protocol}://${config.bucket}.${config.host}${config.path}${current}`;
-        } else {
-          return `${config.protocol}://${config.host}${config.path}${current}`;
-        }
-      case "data":
-        return current;
-      default:
-        return current;
-    }
-  }
+  //     switch (options.activeSource) {
+  //       case "s3":
+  //         const config =
+  //           game.data.files && game.data.files.s3 && game.data.files.s3
+  //             ? game.data.files.s3
+  //             : null;
+  //         // failsave
+  //         if (config === null) return current;
+  //         if (options.bucket) {
+  //           return `${config.protocol}://${config.bucket}.${config.host}${config.path}${current}`;
+  //         } else {
+  //           return `${config.protocol}://${config.host}${config.path}${current}`;
+  //         }
+  //       case "data":
+  //         return current;
+  //       default:
+  //         return current;
+  //     }
+  //   }
 
-  static URLFromDescriptor(descriptor) {
-    const options = DirectoryPicker.optionsFromDescriptor(descriptor);
-    return DirectoryPicker.URLFromOptions(options);
-  }
+  //   static URLFromDescriptor(descriptor) {
+  //     const options = DirectoryPicker.optionsFromDescriptor(descriptor);
+  //     return DirectoryPicker.URLFromOptions(options);
+  //   }
 }
 
 export default DirectoryPicker;
