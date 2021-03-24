@@ -1,40 +1,39 @@
 import config from "../../config/index.js";
+import DirectoryPicker from "../settings/DirectoryPicker.js";
 
-const getS3Config = () => {
-  const s3Endpoint =
-    game.data.files.s3 &&
-    game.data.files.s3 &&
-    game.data.files.s3.endpoint &&
-    game.data.files.s3.endpoint.href
-      ? game.data.files.s3.endpoint.href
-      : null;
+const download = async (url) => {
+  const loadImage = (url) => {
+    return new Promise((resolve, reject) => {
+      const image = new Image();
+      image.crossOrigin = "Anonymous";
+      image.onload = (event) => {
+        resolve(image);
+      };
 
-  return s3Endpoint;
-};
+      image.onerror = (event) => {
+        console.log("Error on downloading the image");
+        console.log(event);
+        reject(event);
+      };
+      image.src = url;
+    });
+  };
 
-const isS3URL = (url) => {
-  const config = getS3Config();
-  if (config === null) return false;
-
-  const compare = new URL(url, config.href);
-  return compare.host === config.hostname;
-};
-
-const isServerURL = (url) => {
-  const compare = new URL(url, location.origin);
-  return compare.host === location.host;
-};
-
-const requiresProxy = (url) => {
-  if (isServerURL(url) || isS3URL(url)) {
-    return false;
-  } else {
-    return true;
+  // if it's an internal URL, just load it and get on with life
+  if (DirectoryPicker.isInternalURL(url)) {
+    return loadImage(url);
   }
-};
 
-const download = (url) => {
-  if (requiresProxy(url)) {
+  // if it's an external URL, try to load it and see what happens
+  try {
+    console.log("[VTTA-CORE] Downloading image, 1st try...");
+    let img = await loadImage(url);
+    console.log("[VTTA-CORE] That worked");
+    return img;
+  } catch (error) {
+    console.log("[VTTA-CORE] Failed, try using the proxy...");
+    // try to load it by using the proxy
+
     let proxy = game.settings.get(config.module.name, "proxy");
     // if using VTTA proxy, add the access token to it
     const VTTA_OWNED_PROXIES = ["i.vtta.io", "vttassets.eu.ngrok.io"];
@@ -44,29 +43,11 @@ const download = (url) => {
     );
 
     if (isVTTAOwnedProxy) {
-      try {
-        const access_token = game.settings.get(
-          config.module.name,
-          "access_token"
-        );
-        proxy += "?access_token=" + encodeURIComponent(access_token);
-      } catch (error) {
-        // We are not using a proxy and trying to access the image without one
-        // download the image from this proxy
-        return new Promise((resolve, reject) => {
-          const image = new Image();
-          image.onload = (event) => {
-            resolve(image);
-          };
-
-          image.onerror = (event) => {
-            console.log("Error on downloading the image");
-            console.log(event);
-            reject(event);
-          };
-          image.src = url;
-        });
-      }
+      const access_token = game.settings.get(
+        config.module.name,
+        "access_token"
+      );
+      proxy += "?access_token=" + encodeURIComponent(access_token);
     }
 
     url = encodeURIComponent(url);
@@ -75,18 +56,18 @@ const download = (url) => {
     } else {
       url = proxy + url;
     }
-  }
 
-  // download the image from this proxy
-  return new Promise((resolve, reject) => {
-    const image = new Image();
-    image.crossOrigin = "Anonymous";
-    image.onload = (event) => {
-      resolve(image);
-    };
-    image.onerror = (event) => reject(event);
-    image.src = url;
-  });
+    console.log("[VTTA-CORE] URL: " + url);
+    try {
+      const img = await loadImage(url);
+      console.log("[VTTA-CORE] No error yet, returning the image");
+      return img;
+    } catch (error) {
+      console.log("[VTTA-CORE] That's an error, too");
+      console.log(error);
+      throw error;
+    }
+  }
 };
 
 export default download;
