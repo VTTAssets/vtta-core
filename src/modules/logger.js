@@ -48,6 +48,7 @@ const LOG_FUNCTIONS = new Map([
  */
 const log = (module, logLevel, data) => {
   if (filter(module, logLevel)) return;
+  if (!Array.isArray(data)) data = [data];
   const [head, ...rest] = data;
   const coloredTitle = `%c[${LOG_PREFIX.get(logLevel)}] ${module}: %c${head}`;
   LOG_FUNCTIONS.get(logLevel)(
