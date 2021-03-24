@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/VTTAssets/vtta-core/compare/v1.2.0...v1.2.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* Compatibility with The Forge and Asset Library increased ([feb69f4](https://github.com/VTTAssets/vtta-core/commit/feb69f4f7f48795d819c983708f2fc66b07052d4))
+
 ## 1.2.0 (2021-03-24)
 
 ### Features
