@@ -69,7 +69,9 @@ class DirectoryPicker extends FilePicker {
   }
 
   static get isForgeHosted() {
-    return new URL(document.URL).hostname.endsWith("forge-vtt.com");
+    // ref: https://discord.com/channels/687213225225355296/694659543052976268/824378131212664844
+    // return new URL(document.URL).hostname.endsWith("forge-vtt.com");
+    return typeof ForgeVTT !== "undefined" && ForgeVTT.usingTheForge;
   }
 
   // returns the type "Directory" for rendering the SettingsConfig
