@@ -10,6 +10,7 @@ const config = {
     },
     extension: {
       default: "CMD_SEND_FOUNDRY_MESSAGE",
+      query: "vtta-ddb.query",
     },
   },
 };

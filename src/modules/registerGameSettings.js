@@ -1,9 +1,6 @@
 import config from "../config/index.js";
 import GameSettings from "../apps/settings/index.js";
 
-const DEFAULT_IMAGE_PROXY = "https://i.vtta.io/dl/%URL%";
-const DEFAULT_API = "https://api.vtta.io";
-
 export default function () {
   /**
    * Registering the settings menu for VTTA
@@ -29,26 +26,26 @@ export default function () {
     /**
      * Image Download Proxy
      * If you want to use your own image download CORS proxy, set a config in-game manually:
-     * game.settings.set('vtta-core', 'proxy', 'https://someproxy.ru/get?url=%URL%');
+     * game.settings.set('vtta-core', 'custom-image-proxy', 'https://someproxy.ru/get?url=%URL%');
      *
      * The downloadable URL will be url encoded and appended to the configured host
      * at %URL%
      */
     {
-      key: "proxy",
+      key: "custom-image-proxy",
       type: String,
       public: false,
       scope: "world",
       config: false,
-      default: DEFAULT_IMAGE_PROXY,
+      default: null,
     },
     {
-      key: "api",
+      key: "environment",
       type: String,
       public: false,
       scope: "world",
       config: false,
-      default: DEFAULT_API,
+      default: "PRODUCTION",
     },
     {
       key: "access_token",

@@ -4,20 +4,22 @@ import logger from "../util/logger.js";
 import BugReport from "../apps/bugReport/index.js";
 
 export default function () {
+  /**
+   * Reacting on other modules querying for core-existance
+   */
   window.addEventListener(config.messaging.core.query, (event) => {
     logger.debug("[vtta-core] Received availability event", event);
-    fetch("/modules/vtta-core/module.json")
-      .then((response) => response.json())
-      .then((json) => {
-        logger.debug("[vtta-core] Responding with verson number", json.version);
-        window.dispatchEvent(
-          new CustomEvent(config.messaging.core.response, {
-            detail: {
-              version: json.version,
-            },
-          })
-        );
-      });
+
+    // let's grab the manifest Foundry provides for us
+    const modInfo = game.modules.get(config.module.name).data;
+    logger.debug("[vtta-core] Responding with verson number", modInfo.version);
+    window.dispatchEvent(
+      new CustomEvent(config.messaging.core.response, {
+        detail: {
+          version: modInfo.version,
+        },
+      })
+    );
   });
 
   // register the default handler for all extension messages

@@ -1,4 +1,5 @@
 import config from "../../config/index.js";
+import logger from "../../util/logger.js";
 import DirectoryPicker from "../settings/DirectoryPicker.js";
 
 const download = async (url) => {
@@ -19,36 +20,58 @@ const download = async (url) => {
     });
   };
 
+  const imageToDataUrl = (url) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "Anonymous";
+      img.onload = (event) => {
+        const canvas = document.createElement("canvas");
+        console.log(img);
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.getContext("2d").drawImage(img, 0, 0);
+        resolve(canvas.toDataUrl("jpg"));
+      };
+      img.src = url;
+    });
+  };
+
   // if it's an internal URL, just load it and get on with life
   if (DirectoryPicker.isInternalURL(url)) {
     return loadImage(url);
   }
 
+  const KNOWN_CORS_HOSTS = [
+    "media.dndbeyond.com",
+    "media-waterdeep.cursecdn.com",
+  ];
   // if it's an external URL, try to load it and see what happens
+
   try {
-    console.log("[VTTA-CORE] Downloading image, 1st try...");
-    let img = await loadImage(url);
-    console.log("[VTTA-CORE] That worked");
-    return img;
-  } catch (error) {
-    console.log("[VTTA-CORE] Failed, try using the proxy...");
-    // try to load it by using the proxy
-
-    let proxy = game.settings.get(config.module.name, "proxy");
-    // if using VTTA proxy, add the access token to it
-    const VTTA_OWNED_PROXIES = ["i.vtta.io", "vttassets.eu.ngrok.io"];
-    const isVTTAOwnedProxy = VTTA_OWNED_PROXIES.reduce(
-      (isVTTAOwned, hostname) => isVTTAOwned || proxy.search(hostname) !== -1,
-      false
-    );
-
-    if (isVTTAOwnedProxy) {
-      const access_token = game.settings.get(
-        config.module.name,
-        "access_token"
-      );
-      proxy += "?access_token=" + encodeURIComponent(access_token);
+    if (KNOWN_CORS_HOSTS.includes(new URL(url).host)) {
+      throw "Known CORS Host, do not try to download it directly";
+    } else {
+      let img = await loadImage(url);
+      return img;
     }
+  } catch (error) {
+    let proxy = game.settings.get(config.module.name, "custom-image-proxy");
+
+    /**
+     * If a custom image proxy is configured, will will use this and it's either hit or miss
+     */
+    if (!proxy || typeof proxy !== "string") {
+      // get the relevant VTTA proxy
+      const PROXY_CONFIG = new Map([
+        ["PRODUCTION", "https://i.vtta.io/dl/%URL%"],
+        ["STAGING", "https://i.vtta.dev/dl/%URL%"],
+      ]);
+      proxy = PROXY_CONFIG.get(config.module.name, "environment");
+      if (!proxy) proxy = PROXY_CONFIG.get("PRODUCTION");
+    }
+
+    const access_token = game.settings.get(config.module.name, "access_token");
+    proxy += "?access_token=" + encodeURIComponent(access_token);
 
     url = encodeURIComponent(url);
     if (proxy.indexOf("%URL%") !== -1) {
@@ -57,14 +80,15 @@ const download = async (url) => {
       url = proxy + url;
     }
 
-    console.log("[VTTA-CORE] URL: " + url);
+    console.log("[VTTA-CORE] Image Proxy URL: " + url);
     try {
       const img = await loadImage(url);
-      console.log("[VTTA-CORE] No error yet, returning the image");
       return img;
     } catch (error) {
-      console.log("[VTTA-CORE] That's an error, too");
-      console.log(error);
+      logger.error(
+        "[VTTA-CORE] Could not download the image from " + url,
+        error
+      );
       throw error;
     }
   }

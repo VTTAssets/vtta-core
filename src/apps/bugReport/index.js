@@ -39,7 +39,14 @@ class BugReportApplication extends FormApplication {
    */
   async loadUserProfile() {
     const access_token = game.settings.get(config.module.name, "access_token");
-    const API_URL = game.settings.get(config.module.name, "api");
+    const environment = game.settings.get(config.module.name, "environment");
+
+    const API_CONFIG = new Map([
+      ["PRODUCTION", "https://api.vtta.io"],
+      ["STAGING", "https://api.vtta.dev"],
+    ]);
+    let API_URL = API_CONFIG.get(config.module.name, "environment");
+    if (!API_URL) API_URL = API_CONFIG.get("PRODUCTION");
 
     return new Promise((resolve, reject) => {
       fetch(`${API_URL}/auth/me`, {
