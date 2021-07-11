@@ -42,6 +42,7 @@ const download = async (url) => {
   }
 
   const KNOWN_CORS_HOSTS = [
+    "www.dndbeyond.com",
     "media.dndbeyond.com",
     "media-waterdeep.cursecdn.com",
   ];
