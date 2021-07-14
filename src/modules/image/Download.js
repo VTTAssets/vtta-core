@@ -12,8 +12,6 @@ const download = async (url) => {
       };
 
       image.onerror = (event) => {
-        console.log("Error on downloading the image");
-        console.log(event);
         reject(event);
       };
       image.src = url;
@@ -26,7 +24,6 @@ const download = async (url) => {
       img.crossOrigin = "Anonymous";
       img.onload = (event) => {
         const canvas = document.createElement("canvas");
-        console.log(img);
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
         canvas.getContext("2d").drawImage(img, 0, 0);
@@ -61,7 +58,7 @@ const download = async (url) => {
     /**
      * If a custom image proxy is configured, will will use this and it's either hit or miss
      */
-    if (!proxy || typeof proxy !== "string") {
+    if (!proxy || (typeof proxy === "string" && proxy.length === 0)) {
       // get the relevant VTTA proxy
       const PROXY_CONFIG = new Map([
         ["PRODUCTION", "https://i.vtta.io/dl/%URL%"],
@@ -81,7 +78,6 @@ const download = async (url) => {
       url = proxy + url;
     }
 
-    console.log("[VTTA-CORE] Image Proxy URL: " + url);
     try {
       const img = await loadImage(url);
       return img;

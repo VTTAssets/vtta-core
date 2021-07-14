@@ -73,7 +73,6 @@ class BugReportApplication extends FormApplication {
    */
   async getData() {
     const user = await this.loadUserProfile();
-    console.log(user);
     const moduleNames = ["vtta-core", "vtta-ddb", "vtta-tokens"];
 
     const moduleInfo = await Promise.all(
@@ -165,7 +164,6 @@ class BugReportApplication extends FormApplication {
       .on("click", async (event) => {
         const button = $(event.currentTarget);
         const type = button.prop("type");
-        console.log("Type: " + type);
 
         const selectedModule = $(html).find("select[name='module'] :selected");
 
@@ -192,8 +190,6 @@ class BugReportApplication extends FormApplication {
             break;
           default:
             const result = await this.submitBugReport(data);
-            console.log("Report result");
-            console.log(result);
             if (result.success) {
               window.vtta.ui.Notification.show(
                 "Bug report submitted",
@@ -223,7 +219,6 @@ class BugReportApplication extends FormApplication {
           $(html).find("#updateAvailableWarning").hide();
           $(html).find("button[type='submit']").prop("disabled", false);
         }
-        console.log(data);
       });
 
     super.activateListeners(html);

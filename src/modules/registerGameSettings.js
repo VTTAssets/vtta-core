@@ -37,7 +37,7 @@ export default function () {
       public: false,
       scope: "world",
       config: false,
-      default: null,
+      default: "",
     },
     {
       key: "environment",

@@ -37,7 +37,6 @@ class Modal {
     };
 
     const submit = (event) => {
-      console.log("Submitting the modal");
       const button = $(event.target);
       const name = $(button).attr("name");
 
@@ -65,7 +64,6 @@ class Modal {
 
   show() {
     return new Promise((resolve, reject) => {
-      console.log("Showing modal");
       $("body").append(this.html);
       $(this.html).fadeIn(100, () => {
         this.activateListeners(resolve);

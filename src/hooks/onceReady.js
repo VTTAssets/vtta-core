@@ -15,7 +15,7 @@ const onceReady = () => {
    * Adjustments for 0.8.x
    */
   window.vtta.postEightZero =
-    semanticVersionCompare("0.7.9", game.data.version) === -1;
+    semanticVersionCompare("0.7.10", game.data.version) === -1;
 };
 
 export default onceReady;

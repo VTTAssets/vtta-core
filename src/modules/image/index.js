@@ -19,6 +19,4 @@ export default function () {
   } else {
     window.vtta = vtta;
   }
-  console.log("Image utilities registered:");
-  console.log(window.vtta);
 }

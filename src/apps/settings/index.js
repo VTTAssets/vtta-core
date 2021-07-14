@@ -94,10 +94,6 @@ class SettingsApplication extends FormApplication {
             }
           })
           .filter((section) => section !== undefined);
-        console.log("Configurations collected", {
-          sections: sections,
-          buttons: buttons,
-        });
 
         this.buttons = buttons;
 
@@ -181,14 +177,12 @@ class SettingsApplication extends FormApplication {
       .on("click", async (event) => {
         const button = $(event.currentTarget);
         const type = button.prop("type");
-        console.log("Type: " + type);
 
         if (type === "button") {
           event.preventDefault();
           // check if it a button added by a module
           const { key } = $(event.currentTarget).data();
           if (key) {
-            console.log("Button with key: " + key);
             const button = this.buttons.find((button) => button.key === key);
             if (button) {
               button.callback(event);

@@ -9,8 +9,6 @@ class ImageFilePicker extends FilePicker {
 
   _onSubmit(event) {
     event.preventDefault();
-    console.log("[_onSubmit]");
-    console.log(event);
     const url = event.target.file.value;
 
     const activeSource = this.activeSource;
@@ -54,8 +52,6 @@ class ImageFilePicker extends FilePicker {
 
   // formats the data into a string for saving it as a GameSetting
   static format(value) {
-    console.log("[format] value: " + value);
-    console.log(value);
     return value.bucket !== null
       ? `[${value.activeSource}:${value.bucket}] ${value.filePath}`
       : `[${value.activeSource}] ${value.filePath}`;
