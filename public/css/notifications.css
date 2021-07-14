@@ -13,6 +13,17 @@
   padding: 0;
   z-index: 160;
 }
+
+#vtta-notifications > div.ui.warning {
+  background-image: url(../img/icon-warn-64.png);
+  padding-left: 52px;
+  background-repeat: no-repeat;
+  background-size: 32px;
+  background-position-x: 10px;
+  background-position-y: 10px;
+  width: 300px;
+}
+
 #vtta-notifications > div {
   -webkit-box-shadow: 0 0 20px #000;
           box-shadow: 0 0 20px #000;
@@ -41,6 +52,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
 }
+
 #vtta-hints > div {
   -webkit-box-shadow: 0 0 20px #000;
           box-shadow: 0 0 20px #000;
@@ -53,13 +65,23 @@
   border-radius: 4px;
   background: #292929;
 }
-#vtta-hints > div > h1, #vtta-hints > div h2, #vtta-hints > div h3, #vtta-hints > div h4, #vtta-hints > div h5, #vtta-hints > div p {
+
+#vtta-hints > div > h1,
+#vtta-hints > div h2,
+#vtta-hints > div h3,
+#vtta-hints > div h4,
+#vtta-hints > div h5,
+#vtta-hints > div p {
   padding: 10px;
 }
-#vtta-hints > div > ul, #vtta-hints > div ol {
+
+#vtta-hints > div > ul,
+#vtta-hints > div ol {
   margin-left: 1rem;
 }
-#vtta-hints > div > ul li, #vtta-hints > div ol li {
+
+#vtta-hints > div > ul li,
+#vtta-hints > div ol li {
   -webkit-padding-start: 0.5rem;
           padding-inline-start: 0.5rem;
   margin-bottom: 0.25rem;
@@ -155,6 +177,7 @@
   padding: 0;
   z-index: 160;
 }
+
 #vtta-progress > div {
   -webkit-box-shadow: 0 0 20px #000;
           box-shadow: 0 0 20px #000;
@@ -166,6 +189,7 @@
   border-radius: 4px;
   background: #292929;
 }
+
 #vtta-progress .timer {
   height: auto;
   display: -webkit-box;
@@ -179,12 +203,14 @@
       -ms-flex-direction: row;
           flex-direction: row;
 }
+
 #vtta-progress .timer .header {
   font-size: 1rem;
   -ms-flex-negative: 1;
       flex-shrink: 1;
   margin-right: 10px;
 }
+
 #vtta-progress .timer .bar {
   -webkit-box-flex: 1;
       -ms-flex: auto;
@@ -193,6 +219,7 @@
   border: 2px solid black;
   background-color: black;
 }
+
 #vtta-progress .timer .bar .tick {
   -webkit-transition: width 0.5s;
   transition: width 0.5s;

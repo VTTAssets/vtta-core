@@ -9,6 +9,16 @@
   padding: 0;
   z-index: 160;
 
+  > div.ui.warning {
+    background-image: url(../img/icon-warn-64.png);
+    padding-left: 52px;
+    background-repeat: no-repeat;
+    background-size: 32px;
+    background-position-x: 10px;
+    background-position-y: 10px;
+    width: 300px;
+  }
+
   > div {
     box-shadow: 0 0 20px #000;
     flex: 0 0 auto;
@@ -34,25 +44,29 @@
     box-shadow: 0 0 20px #000;
     flex: 0 0 auto;
     width: 100%;
-    
+
     margin-bottom: 10px;
     border: 4px solid rgb(31, 31, 31);
     border-radius: 4px;
     background: rgb(41, 41, 41);
 
-    > h1, h2, h3, h4, h5, p  {
+    > h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    p {
       padding: 10px;
     }
 
-    > ul, ol {
+    > ul,
+    ol {
       margin-left: 1rem;
       li {
         padding-inline-start: 0.5rem;
         margin-bottom: 0.25rem;
       }
     }
-
-    
   }
 }
 

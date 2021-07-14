@@ -25,16 +25,18 @@ const notification = {
       $("#vtta-notifications").empty();
     });
   },
-  show: (title, text, timeout = 4000) => {
+  show: (title, text, timeout = 4000, options = {}) => {
     $("#vtta-notifications").css("left", $("#players").css("left"));
     // prettier-ignore
     $("#vtta-notifications").css("bottom", $("#players").height() + (2 * MARGIN));
 
     const message = `<h2>${title}</h2><div>${text}</div>`;
 
-    let note = $(`<div class="ui" style="display: none"></div>`).append(
-      message
-    );
+    let note = $(
+      `<div class="ui ${
+        options.css ? options.css : ""
+      }" style="display: none"></div>`
+    ).append(message);
     $("#vtta-notifications").append(note);
     $(note).fadeIn(200);
 
