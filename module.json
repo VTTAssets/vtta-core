@@ -1,25 +1,29 @@
 {
-  "name": "vtta-core",
-  "title": "VTTA Core",
-  "description": "Required module for all VTTA modules, providing generic functionality and configuration possiblities",
-  "author": "Sebastian Will <vttassets@gmail.com>",
-  "version": "2.0.3",
-  "minimumCoreVersion": "0.7.6",
-  "compatibleCoreVersion": "0.8.8",
-  "scripts": ["src/lib/bottleneck.light.js"],
-  "esmodules": ["src/index.js"],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    }
-  ],
-  "manifest": "https://www.vtta.io/download/vtta-core/module.json",
-  "download": "https://www.vtta.io/download/vtta-core",
-  "styles": [
-    "public/css/core.min.css",
-    "public/css/settings.min.css",
-    "public/css/notifications.min.css"
-  ]
+   "name": "vtta-core",
+   "title": "VTTA Core",
+   "description": "Required module for all VTTA modules, providing generic functionality and configuration possiblities",
+   "author": "Sebastian Will <vttassets@gmail.com>",
+   "version": "2.0.3",
+   "minimumCoreVersion": "0.7.6",
+   "compatibleCoreVersion": "0.8.8",
+   "scripts": [
+      "src/lib/bottleneck.light.js"
+   ],
+   "esmodules": [
+      "src/index.js"
+   ],
+   "languages": [
+      {
+         "lang": "en",
+         "name": "English",
+         "path": "lang/en.json"
+      }
+   ],
+   "manifest": "https://raw.githubusercontent.com/VTTAssets/vtta-core/main/module.json",
+   "download": "https://github.com/VTTAssets/vtta-core/releases/download/v2.0.3/vtta-core-v2.0.3.zip",
+   "styles": [
+      "public/css/core.min.css",
+      "public/css/settings.min.css",
+      "public/css/notifications.min.css"
+   ]
 }
