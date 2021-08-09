@@ -3,7 +3,7 @@
   "title": "VTTA Core",
   "description": "Required module for all VTTA modules, providing generic functionality and configuration possiblities",
   "author": "Sebastian Will <vttassets@gmail.com>",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "minimumCoreVersion": "0.7.6",
   "compatibleCoreVersion": "0.8.8",
   "scripts": ["src/lib/bottleneck.light.js"],
@@ -15,8 +15,8 @@
       "path": "lang/en.json"
     }
   ],
-  "manifest": "http://localhost:5000/vtta-core/module.json",
-  "download": "http://localhost:5000/vtta-core",
+  "manifest": "https://www.vtta.io/download/vtta-core/module.json",
+  "download": "https://www.vtta.io/download/vtta-core",
   "styles": [
     "public/css/core.min.css",
     "public/css/settings.min.css",
