@@ -89,9 +89,9 @@ class DirectoryPicker extends FilePicker {
     } else {
       const s3Host =
         game.data.files.s3 &&
-        game.data.files.s3 &&
-        game.data.files.s3.endpoint &&
-        game.data.files.s3.endpoint.host
+          game.data.files.s3 &&
+          game.data.files.s3.endpoint &&
+          game.data.files.s3.endpoint.host
           ? game.data.files.s3.endpoint.host
           : "";
 
@@ -211,9 +211,9 @@ class DirectoryPicker extends FilePicker {
     } else {
       const s3Host =
         game.data.files.s3 &&
-        game.data.files.s3 &&
-        game.data.files.s3.endpoint &&
-        game.data.files.s3.endpoint.host
+          game.data.files.s3 &&
+          game.data.files.s3.endpoint &&
+          game.data.files.s3.endpoint.host
           ? game.data.files.s3.endpoint.host
           : "";
 
@@ -303,7 +303,7 @@ class DirectoryPicker extends FilePicker {
         // try to find the bucket
         return {
           activeSource,
-          bucket: fp.bucket,
+          bucket: fp.sources.s3.s3bucket,
           current: `${current}/${filename}`,
         };
       }
