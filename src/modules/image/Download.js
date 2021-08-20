@@ -14,7 +14,7 @@ const download = async (url) => {
       image.onerror = (event) => {
         reject(event);
       };
-      image.src = url;
+      image.src = url + "?cacheblock=true";
     });
   };
 
